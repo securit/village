@@ -1,6 +1,9 @@
 <?php
 
 $finder = Symfony\Component\Finder\Finder::create()
+    ->in([
+        __DIR__
+    ])
     ->exclude(['bootstrap', 'storage', 'vendor'])
     ->name('*.php')
     ->notName('*.blade.php')
