@@ -26,6 +26,10 @@ Route::get('/', function () {
     ]);
 });
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->name('dashboard');
+
 // Patient Resource Controller Routes
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('patients', PatientController::class);

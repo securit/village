@@ -1,5 +1,6 @@
-const mix = require('laravel-mix');
-
+const mix        = require('laravel-mix');
+const cssImport  = require('postcss-import')
+const cssNesting = require('postcss-nesting')
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,13 +12,17 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').vue()
+mix.js('resources/js/app.js', 'public/js')
+    .vue({runtimeOnly: true})
     .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
+        cssImport(),
+        cssNesting(),
         require('tailwindcss'),
     ])
     .webpackConfig(require('./webpack.config'));
 
 if (mix.inProduction()) {
     mix.version();
+} else {
+    mix.sourceMaps()
 }

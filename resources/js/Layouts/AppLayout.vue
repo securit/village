@@ -22,6 +22,9 @@
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
+                                <jet-nav-link :href="route('patients.index')" :active="route().current('patients.index')">
+                                    Patients
+                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -232,48 +235,48 @@
 </template>
 
 <script>
-    import JetApplicationMark from '@/Jetstream/ApplicationMark.vue'
-    import JetBanner from '@/Jetstream/Banner.vue'
-    import JetDropdown from '@/Jetstream/Dropdown.vue'
-    import JetDropdownLink from '@/Jetstream/DropdownLink.vue'
-    import JetNavLink from '@/Jetstream/NavLink.vue'
-    import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue'
-    import { Head, Link } from '@inertiajs/inertia-vue3';
+import JetApplicationMark from '@/Jetstream/ApplicationMark.vue'
+import JetBanner from '@/Jetstream/Banner.vue'
+import JetDropdown from '@/Jetstream/Dropdown.vue'
+import JetDropdownLink from '@/Jetstream/DropdownLink.vue'
+import JetNavLink from '@/Jetstream/NavLink.vue'
+import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue'
+import { Head, Link } from '@inertiajs/inertia-vue3';
 
-    export default {
-        props: {
-            title: String,
-        },
+export default {
+    props: {
+        title: String,
+    },
 
-        components: {
-            Head,
-            JetApplicationMark,
-            JetBanner,
-            JetDropdown,
-            JetDropdownLink,
-            JetNavLink,
-            JetResponsiveNavLink,
-            Link,
-        },
+    components: {
+        Head,
+        JetApplicationMark,
+        JetBanner,
+        JetDropdown,
+        JetDropdownLink,
+        JetNavLink,
+        JetResponsiveNavLink,
+        Link,
+    },
 
-        data() {
-            return {
-                showingNavigationDropdown: false,
-            }
-        },
-
-        methods: {
-            switchToTeam(team) {
-                this.$inertia.put(route('current-team.update'), {
-                    'team_id': team.id
-                }, {
-                    preserveState: false
-                })
-            },
-
-            logout() {
-                this.$inertia.post(route('logout'));
-            },
+    data() {
+        return {
+            showingNavigationDropdown: false,
         }
+    },
+
+    methods: {
+        switchToTeam(team) {
+            this.$inertia.put(route('current-team.update'), {
+                'team_id': team.id
+            }, {
+                preserveState: false
+            })
+        },
+
+        logout() {
+            this.$inertia.post(route('logout'));
+        },
     }
+}
 </script>
