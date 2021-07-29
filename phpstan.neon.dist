@@ -1,0 +1,32 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+
+    checkModelProperties: true
+
+
+    paths:
+        - app
+
+    level: 5
+
+    excludePaths:
+        - ./*/*/ImportGARFO.php
+        - ./*/*/ImportGPSFromVMS.php
+        - ./*/*/EmergencyLoginController.php
+        - ./*/*/RegisterController.php
+        - ./*/*/GPRMC.php
+        - ./*/*/PerformanceIndicatorsController.php
+        - ./*/*/DashboardController.php
+        - ./*/Models/ActivityLog.php
+
+    ignoreErrors:
+        - '#Unsafe usage of new static#'
+        - '#Static method App\\ShdEvent::scopeWithExtraAttributes\(\) invoked with 1 parameter, 0 required.#'
+        - '#Static method Illuminate\\Database\\Eloquent\\Builder<App\\Models\\ShdEvent>::withExtraAttributes\(\) invoked with 1 parameter, 0 required.#'
+        - '#Access to an undefined property Spatie\\SchemalessAttributes\\SchemalessAttributes::\$[a-zA-Z0-9\\_]+\.#'
+        - '#Access to an undefined property Spatie\\SchemalessAttributes\\Casts\\SchemalessAttributes::\$[a-zA-Z0-9\\_]+\.#'
+        - '#Parameter \$view of function view expects view-string|null, string given#'
