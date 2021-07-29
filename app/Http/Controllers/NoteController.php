@@ -27,7 +27,7 @@ class NoteController extends Controller
             'notes' => Note::orderBy('created_at', 'desc')
                 ->paginate(20)
                 ->withQueryString()
-                ->through(fn($note) => [
+                ->through(fn ($note) => [
                     'id'    => $note->id,
                     'title' => $note->title,
                     'note'  => $note->note,
@@ -140,7 +140,6 @@ class NoteController extends Controller
         ]);
 
         return Redirect::route('notes.index', [], 303);
-
     }
 
     /**
@@ -157,7 +156,6 @@ class NoteController extends Controller
         $note->delete();
 
         return Redirect::route('notes.index', [], 303);
-
     }
 
     /**

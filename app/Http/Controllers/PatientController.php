@@ -10,10 +10,8 @@ use Illuminate\Support\Facades\Redirect;
 use Inertia\Response;
 use Laravel\Jetstream\Jetstream;
 
-
 class PatientController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +28,7 @@ class PatientController extends Controller
                 ->orderByName()
                 ->paginate(20)
                 ->withQueryString()
-                ->through(fn($patient) => [
+                ->through(fn ($patient) => [
                     'id'         => $patient->id,
                     'birthday'   => $patient->birthday,
                     'first_name' => $patient->first_name,
@@ -41,7 +39,6 @@ class PatientController extends Controller
 
                 ]),
         ]);
-
     }
 
     /**
@@ -79,7 +76,6 @@ class PatientController extends Controller
         ]);
 
         return Redirect::route('patients.index', [], 303);
-
     }
 
     /**
@@ -128,6 +124,7 @@ class PatientController extends Controller
         Gate::authorize('update', $patient);
 
         $patient->load('notes');
+
         return Jetstream::inertia()->render($request, 'Patient/Edit', [
             'patient' => $patient,
         ]);
@@ -155,7 +152,6 @@ class PatientController extends Controller
         ]);
 
         return Redirect::route('patients.index', [], 303);
-
     }
 
     /**
@@ -172,7 +168,6 @@ class PatientController extends Controller
         $patient->delete();
 
         return Redirect::route('patients.index', [], 303);
-
     }
 
     /**
@@ -188,5 +183,4 @@ class PatientController extends Controller
 
         return Redirect::route('patients.index', [], 303);
     }
-
 }

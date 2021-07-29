@@ -28,7 +28,6 @@ class NotePolicy
 //        return $user->can('view notes') ?? false;
     }
 
-
     /**
      * Determine whether the user can view the note.
      *
