@@ -25,6 +25,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        // Prune laravel Telescope daily
+        if ($this->app->environment('local')) {
+            $schedule->command('telescope:prune')->daily();
+        }
     }
 
     /**
