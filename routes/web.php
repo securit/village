@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,6 +26,11 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+// Patient Resource Controller Routes
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::resource('patients', PatientController::class);
+    Route::resource('notes', NoteController::class);
+    Route::put('patients/{patient}/restore', [PatientController::class, 'restore'])
+        ->name('patients.restore')
+        ->middleware('auth');
+});
