@@ -30,13 +30,10 @@ class PatientController extends Controller
                 ->withQueryString()
                 ->through(fn ($patient) => [
                     'id'         => $patient->id,
-                    'birthday'   => $patient->birthday,
                     'first_name' => $patient->first_name,
-                    'gender'     => $patient->gender,
                     'known_as'   => $patient->known_as,
                     'last_name'  => $patient->last_name,
                     'title'      => $patient->title,
-
                 ]),
         ]);
     }
