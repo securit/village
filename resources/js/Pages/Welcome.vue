@@ -24,12 +24,18 @@
                     <span class="block text-base text-center text-indigo-600 font-semibold tracking-wide uppercase">Introducing</span>
                     <span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">The Village</span>
                 </h1>
-            </div>
 
+            </div>
             <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                 <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                     Laravel v{{ laravelVersion }} (PHP v{{ phpVersion }})
                 </div>
+            </div>
+        </div>
+        <div class="max-w-6xl hidden md:block mx-auto sm:px-6 lg:px-8">
+            <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+                <img src="https://images.unsplash.com/photo-1616286608358-0e1b143f7d2f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80" alt=""
+                     class="rounded-lg bg-gray-100" />
             </div>
         </div>
     </div>
