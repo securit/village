@@ -22,8 +22,8 @@ class NoteFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->text(100),
-            'note'  => $this->faker->realTextBetween(100, 800),
+            'title'      => $this->faker->text(100),
+            'note'       => $this->faker->realTextBetween(100, 800),
             'created_at' => $this->faker->dateTimeBetween('-50 days', now()),
         ];
     }
