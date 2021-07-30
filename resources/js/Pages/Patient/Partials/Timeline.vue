@@ -9,26 +9,49 @@
         <div class="border-t border-gray-200">
             <div class="relative wrap overflow-hidden p-10 h-full">
                 <div class="border-2-2 absolute border-opacity-20 border-gray-700 h-full border" style="left: 50%"></div>
-                <!-- right timeline -->
-                <div v-for="(note,index) of notes" class="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div class="order-1 w-5/12"></div>
-                    <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-                        <h1 class="mx-auto font-semibold text-lg text-white">{{ index + 1 }}</h1>
-                    </div>
-                    <div class="order-1 bg-gray-200 rounded-lg shadow-xl w-5/12 px-6 py-4">
-                        <div class="text-xs text-grey flex items-center my-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                 class="h-4 w-4 mr-1 feather feather-calendar">
-                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                <line x1="16" y1="2" x2="16" y2="6"></line>
-                                <line x1="8" y1="2" x2="8" y2="6"></line>
-                                <line x1="3" y1="10" x2="21" y2="10"></line>
-                            </svg>
-                            <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{{ localDate(note.created_at) }}</p>
+
+                <div v-for="(note,index) of notes">
+                    <div v-if="index%2" class="mb-8 flex justify-between items-center w-full right-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-32 h-8 rounded-full">
+                            <h1 class="mx-auto font-semibold text-lg text-white">{{ localDate(note.created_at) }}</h1>
                         </div>
-                        <h3 class="mb-3 font-bold text-gray-800 text-xl">{{ note.title }}</h3>
-                        <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{{ note.note }}</p>
+                        <div class="order-1 bg-gray-200 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                            <div class="text-xs text-grey flex items-center my-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="h-4 w-4 mr-1 feather feather-calendar">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{{ fromNow(note.created_at) }}</p>
+                            </div>
+                            <h3 class="mb-3 font-bold text-gray-800 text-xl">{{ note.title }}</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{{ note.note }}</p>
+                        </div>
+                    </div>
+                    <div v-else class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                        <div class="order-1 w-5/12"></div>
+                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-32 h-8 rounded-full">
+                            <h1 class="mx-auto font-semibold text-lg text-white">{{ localDate(note.created_at) }}</h1>
+                        </div>
+                        <div class="order-1 bg-blue-400 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                            <div class="text-xs text-grey flex items-center my-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="h-4 w-4 mr-1 feather feather-calendar">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{{ fromNow(note.created_at) }}</p>
+                            </div>
+                            <h3 class="mb-3 font-bold text-gray-800 text-xl">{{ note.title }}</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-900 text-opacity-100">{{ note.note }}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,7 +108,7 @@ export default {
         },
         localDate(value) {
             const date    = new Date(value)
-            const options = {dateStyle: 'short', timeStyle: 'short'}
+            const options = {dateStyle: 'short'} //, timeStyle: 'short'}
 
             return new Intl.DateTimeFormat(locale, options).format(date)
         },
